@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.product.content.top" before="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">product-content-top</argument>
+                </action>
+            </block>
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.product.content.bottom" after="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">product-content-bottom</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.product.sidebar.additional.top" before="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">product-sidebar-additional-top</argument>
+                </action>
+            </block>
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.product.sidebar.additional.bottom" after="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">product-sidebar-additional-bottom</argument>
+                </action>
+            </block>
+       	</referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,27 @@
+{
+  "name": "jakesharp/module-productslider",
+  "description": "A Magento 2 module for managing product sliders",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0",
+    "jakesharp/core": "1.0.0"
+  },
+  "authors": [
+    {
+      "name": "Tomislav Grgić",
+      "email": "tom@jakesharp.co",
+      "homepage": "http://jakesharp.co/"
+    }
+  ],
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "JakeSharp\\Productslider\\": ""
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <productslider>
+            <general>
+                <enable_productslider>0</enable_productslider>
+            </general>
+            <slider_settings>
+                <display_title>0</display_title>
+                <grid>0</grid>
+                <navigation>0</navigation>
+                <infinite>1</infinite>
+                <slides_to_show>4</slides_to_show>
+                <slides_to_scroll>2</slides_to_scroll>
+                <speed>500</speed>
+                <autoplay>0</autoplay>
+                <autoplay_speed>1000</autoplay_speed>
+                <fade>0</fade>
+                <rtl>0</rtl>
+                <breakpoint_large>1024</breakpoint_large>
+                <large_slides_to_show>3</large_slides_to_show>
+                <large_slides_to_scroll>2</large_slides_to_scroll>
+                <breakpoint_medium>768</breakpoint_medium>
+                <medium_slides_to_show>2</medium_slides_to_show>
+                <medium_slides_to_scroll>1</medium_slides_to_scroll>
+                <breakpoint_small>480</breakpoint_small>
+                <small_slides_to_show>1</small_slides_to_show>
+                <small_slides_to_scroll>1</small_slides_to_scroll>
+            </slider_settings>
+        </productslider>
+    </default>
+</config>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="JakeSharp_Productslider::css/slick.css" />
+        <css src="JakeSharp_Productslider::css/slick-theme.css" />
+        <css src="JakeSharp_Productslider::css/productslider.css" />
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.content.top" before="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">content-top</argument>
+                </action>
+            </block>
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.content.bottom" after="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">content-bottom</argument>
+                </action>
+            </block>
+       	</referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.sidebar.additional.top" before="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">sidebar-additional-top</argument>
+                </action>
+            </block>
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.sidebar.additional.bottom" after="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">sidebar-additional-bottom</argument>
+                </action>
+            </block>
+       	</referenceContainer>
+    </body>
+</page>

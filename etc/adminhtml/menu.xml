@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend/etc/menu.xsd">
+    <menu>
+        <add id="JakeSharp_Productslider::productslider" title="Product Sliders" module="JakeSharp_Productslider" resource="JakeSharp_Productslider::productslider" parent="JakeSharp_Core::admin" />
+        <add id="JakeSharp_Productslider::manage_sliders" title="Manage Sliders" module="JakeSharp_Productslider" resource="JakeSharp_Productslider::manage_sliders" parent="JakeSharp_Productslider::productslider" action="productslider/slider/index"/>
+        <add id="JakeSharp_Productslider::config" title="Settings" module="JakeSharp_Productslider" resource="JakeSharp_Productslider::config" sortOrder="20" parent="JakeSharp_Productslider::productslider" action="adminhtml/system_config/edit/section/productslider"/>
+    </menu>
+</config>

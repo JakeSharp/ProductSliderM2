@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.cart.content.top" before="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">checkout-content-top</argument>
+                </action>
+            </block>
+            <block class="JakeSharp\Productslider\Block\Slider" name="productslider.cart.content.bottom" after="-">
+                <action method="setSliderLocation">
+                    <argument name="location" xsi:type="string">checkout-content-bottom</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

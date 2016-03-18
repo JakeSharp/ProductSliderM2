@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes">
+    <router id="admin">
+        <route id="productslider" frontName="productslider">
+            <module name="jakesharp_productslider"/>
+        </route>
+    </router>
+</config>
