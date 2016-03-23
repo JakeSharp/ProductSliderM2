@@ -128,7 +128,7 @@ class General extends \Magento\Backend\Block\Widget\Form\Generic {
                 'label' => __('Slider location'),
                 'title' => __('Slider location'),
                 'name' => 'location',
-                'required' => true,
+                'required' => false,
 //                'options' => Productslider::getSliderLocations()
                 'values' => Productslider::getSliderLocations()
             ]
