@@ -116,7 +116,7 @@ class Productslider extends \Magento\Framework\Model\AbstractModel {
     public static function getSliderGridLocations()
     {
         return [
-            self::SLIDER_LOCATION_DEFAULT => __('--- Select Slider Location --'),
+            self::SLIDER_LOCATION_DEFAULT => '--- No Location ---',
             self::HOMEPAGE_CONTENT_TOP => __('Homepage Content Top'),
             self::HOMEPAGE_CONTENT_BOTTOM => __('Homepage Content Bottom'),
             self::CONTENT_TOP => __('Content Top'),
