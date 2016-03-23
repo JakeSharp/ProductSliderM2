@@ -3,7 +3,7 @@
 namespace JakeSharp\Productslider\Block\Slider;
 
 
-class Item extends \Magento\Catalog\Block\Product\AbstractProduct
+class Items extends \Magento\Catalog\Block\Product\AbstractProduct
 {
     const PRODUCTS_COUNT = 10;
 
@@ -17,7 +17,7 @@ class Item extends \Magento\Catalog\Block\Product\AbstractProduct
     protected $_eventTypeFactory;
     protected $_catalogProductVisibility;
 
-    protected $_template = 'JakeSharp_Productslider::slider/item.phtml';
+    protected $_template = 'JakeSharp_Productslider::slider/items.phtml';
 
     protected $_dateTime;
     protected $_storeManager;
@@ -238,7 +238,6 @@ class Item extends \Magento\Catalog\Block\Product\AbstractProduct
         return $this->_slider;
     }
 
-    // maybe this should be deleted
     public function setSliderId($sliderId)
     {
         $this->_sliderId = $sliderId;
@@ -246,12 +245,13 @@ class Item extends \Magento\Catalog\Block\Product\AbstractProduct
 
         if($slider->getId()){
             $this->setSlider($slider);
+            $this->setTemplate($this->_template);
         }
 
         return $this;
     }
 
-    public function getSLiderDisplayId()
+    public function getSliderDisplayId()
     {
         return $this->_dateTime->timestamp().$this->getSliderId();
     }

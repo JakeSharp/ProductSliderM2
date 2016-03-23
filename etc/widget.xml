@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="js_product_slider" class="JakeSharp\Productslider\Block\Slider"
+            placeholder_image="Magento_Cms::images/widget_block.png">
+        <label translate="true">Product Slider</label>
+        <description translate="true">Set product slider</description>
+        <parameters>
+            <parameter name="widget_slider_id" xsi:type="block" visible="true" required="true" sort_order="20">
+                <label translate="true">Slider</label>
+                <block class="JakeSharp\Productslider\Block\Adminhtml\Block\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Slider...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
