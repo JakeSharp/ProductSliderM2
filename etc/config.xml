@@ -16,7 +16,6 @@
                 <speed>500</speed>
                 <autoplay>0</autoplay>
                 <autoplay_speed>1000</autoplay_speed>
-                <fade>0</fade>
                 <rtl>0</rtl>
                 <breakpoint_large>1024</breakpoint_large>
                 <large_slides_to_show>3</large_slides_to_show>

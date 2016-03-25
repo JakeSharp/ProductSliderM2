@@ -118,18 +118,6 @@ class Advanced extends \Magento\Backend\Block\Widget\Form\Generic
             ]
         );
 
-//        $fieldset->addField(
-//            'fade',
-//            'select',
-//            [
-//                'name' => 'fade',
-//                'label' => __('Fade'),
-//                'title' => __('Fade'),
-//                'values' => $yesno,
-//                'value' => $this->_scopeConfig->getValue(self::XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES.'fade',Scope::SCOPE_STORE)
-//            ]
-//        );
-
         $fieldset->addField(
             'rtl',
             'select',

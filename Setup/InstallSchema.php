@@ -98,11 +98,6 @@ class InstallSchema implements InstallSchemaInterface {
                             null,
                             [],
                             'Autoplay speed')
-                ->addColumn('fade',
-                            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
-                            null,
-                            [],
-                            'Fade')
                 ->addColumn('rtl',
                             \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
                             null,
@@ -154,7 +149,7 @@ class InstallSchema implements InstallSchemaInterface {
                             [],
                             'Slides to scroll for small')
                 ->addIndex($setup->getIdxName($table_name,'slider_id'),'slider_id')
-                ->setComment('JakeSharp Main Slider Table');
+                ->setComment('JakeSharp Main Product Slider Table');
 
         $setup->getConnection()->createTable($table);
 

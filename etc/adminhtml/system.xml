@@ -54,11 +54,6 @@
                 <field id="autoplay_speed" translate="label" type="text" sortOrder="70" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Autoplay speed</label>
                 </field>
-                <field id="fade" translate="label comment" type="select" sortOrder="80" showInWebsite="1" showInStore="1" showInDefault="1">
-                    <label>Fade</label>
-                    <comment>If enabled slider will be on one slide mode</comment>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
                 <field id="rtl" translate="label" type="select" sortOrder="90" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Right to left</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
