@@ -173,7 +173,7 @@ class General extends \Magento\Backend\Block\Widget\Form\Generic {
             ]
         );
 
-        //Reference in  vendor/magento/module-newsletter/Block/Adminhtml/Queue/Edit/Form.php
+        // Reference in vendor/magento/module-newsletter/Block/Adminhtml/Queue/Edit/Form.php
         $fieldset->addField(
             'start_time',
             'date',
@@ -200,8 +200,38 @@ class General extends \Magento\Backend\Block\Widget\Form\Generic {
             ]
         );
 
-        $form->setValues($productSlider->getData());
+        $fieldset->addField(
+            'exclude_from_cart',
+            'select',
+            [
+                'label' => __('Exclude from cart'),
+                'title' => __('Exclude from cart'),
+                'note'  => __('Don\'t display sliders on cart page'),
+                'name' => 'exclude_from_cart',
+                'values' => $yesno,
+                'value' => $this->_scopeConfig->getValue(self::XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES.'exclude_from_cart',Scope::SCOPE_STORE)
+            ]
+        );
+
+        $fieldset->addField(
+            'exclude_from_checkout',
+            'select',
+            [
+                'label' => __('Exclude from checkout'),
+                'title' => __('Exclude from cart'),
+                'note'  => __('Don\'t display sliders on checkout'),
+                'name' => 'exclude_from_checkout',
+                'values' => $yesno,
+                'value' => $this->_scopeConfig->getValue(self::XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES.'exclude_from_checkout',Scope::SCOPE_STORE)
+            ]
+        );
+
+        if($productSlider->getData()) {
+            $form->setValues($productSlider->getData());
+        }
+
         $this->setForm($form);
+
         return parent::_prepareForm();
     }
 

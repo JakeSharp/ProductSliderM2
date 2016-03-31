@@ -54,6 +54,16 @@ class InstallSchema implements InstallSchemaInterface {
                             null,
                             [],
                             'Display items grid')
+                ->addColumn('exclude_from_cart',
+                            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                            null,
+                            [],
+                            'Don\'t display slider on cart page ')
+                ->addColumn('exclude_from_checkout',
+                            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                            null,
+                            [],
+                            'Don\'t display slider on checkout ')
                 ->addColumn('location',
                             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                             256,

@@ -31,6 +31,8 @@ class Slider extends \Magento\Framework\View\Element\Template implements \Magent
      */
     protected $_scopeConfig;
 
+    protected $_layoutConfig;
+
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \JakeSharp\Productslider\Model\ResourceModel\Productslider\CollectionFactory $sliderCollectionFactory
@@ -40,10 +42,12 @@ class Slider extends \Magento\Framework\View\Element\Template implements \Magent
         \Magento\Framework\View\Element\Template\Context $context,
         \JakeSharp\Productslider\Model\ResourceModel\Productslider\CollectionFactory $sliderCollectionFactory,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Framework\View\LayoutInterface $layoutConfig,
         array $data = []
     ){
         $this->_sliderCollectionFactory = $sliderCollectionFactory;
         $this->_scopeConfig = $scopeConfig;
+        $this->_layoutConfig = $layoutConfig;
         parent::__construct($context,$data);
     }
 
@@ -73,16 +77,15 @@ class Slider extends \Magento\Framework\View\Element\Template implements \Magent
         return false;
     }
 
-    /**
-     * Set active sliders based on location
-     *
-     * @param string $location
-     *
-     * @return string
-     */
-    public function setSliderLocation($location){
+
+    public function setSliderLocation($location, $hide = false){
         $todayDateTime = $this->_localeDate->date()->format('Y-m-d H:i:s');
         $widgetSliderId = $this->getData('widget_slider_id');
+
+        $cartHandles = ['0'=>'checkout_cart_index'];
+        $checkoutHandles = ['0'=>'checkout_index_index','1'=>'checkout_onepage_failure', "2"=>'checkout_onepage_success'];
+        $currentHandles = $this->_layoutConfig->getUpdate()->getHandles();
+
 
         // Get data without start/end time
         $sliderCollection = $this->_sliderCollectionFactory->create()
@@ -90,13 +93,22 @@ class Slider extends \Magento\Framework\View\Element\Template implements \Magent
             ->addFieldToFilter('start_time',['null' => true])
             ->addFieldToFilter('end_time',['null' => true]);
 
+        // Check to exclude from cart page
+        if(array_intersect($cartHandles,$currentHandles)){
+            $sliderCollection->addFieldToFilter('exclude_from_cart',0);
+        }
+
+        // Check to exclude from checkout
+        if(array_intersect($checkoutHandles,$currentHandles)){
+            $sliderCollection->addFieldToFilter('exclude_from_checkout',0);
+        }
+
         // If widget_slider_id is not null
         if($widgetSliderId){
             $sliderCollection->addFieldToFilter('slider_id',$widgetSliderId);
         } else {
             $sliderCollection->addFieldToFilter('location',$location);
         }
-
 
         // Get data with start/end time
         $sliderCollectionTimer = $this->_sliderCollectionFactory->create()
@@ -109,6 +121,16 @@ class Slider extends \Magento\Framework\View\Element\Template implements \Magent
                                         1 => ['is' => new \Zend_Db_Expr('null')],
                                     ]
                                 ]);
+
+        // Check to exclude from cart page
+        if(array_intersect($cartHandles,$currentHandles)){
+            $sliderCollectionTimer->addFieldToFilter('exclude_from_cart',0);
+        }
+
+        // Check to exclude from checkout
+        if(array_intersect($checkoutHandles,$currentHandles)){
+            $sliderCollectionTimer->addFieldToFilter('exclude_from_checkout',0);
+        }
 
         if($widgetSliderId){
             $sliderCollectionTimer->addFieldToFilter('slider_id',$widgetSliderId);
@@ -125,10 +147,11 @@ class Slider extends \Magento\Framework\View\Element\Template implements \Magent
      *
      * @param \JakeSharp\Productslider\Model\ResourceModel\Productslider\Collection $sliderCollection
      *
-     * @return \JakeSharp\Productslider\Block\Slider
+     * @return $this
      */
     public function setSlider($sliderCollection)
     {
+
         foreach($sliderCollection as $slider):
             $this->append($this->getLayout()
                                 ->createBlock('\JakeSharp\Productslider\Block\Slider\Items')

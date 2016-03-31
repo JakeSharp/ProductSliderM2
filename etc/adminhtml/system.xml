@@ -26,9 +26,19 @@
                     <comment>Display title on frontend</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="grid" translate="label" type="select" sortOrder="8" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="grid" translate="label" type="select" sortOrder="6" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Items in grid</label>
                     <comment>Display items in the grid, without slider </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="exclude_from_cart" translate="label" type="select" sortOrder="7" showInWebsite="1" showInStore="1" showInDefault="1">
+                    <label>Exclude from cart</label>
+                    <comment>Don't display sliders on cart page</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="exclude_from_checkout" translate="label" type="select" sortOrder="8" showInWebsite="1" showInStore="1" showInDefault="1">
+                    <label>Exclude from checkout</label>
+                    <comment>Don't display sliders on checkout</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="navigation" translate="label" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1">
