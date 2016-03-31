@@ -1,12 +1,16 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Model\Slider\Grid;
 
-class Location implements \Magento\Framework\Data\OptionSourceInterface{
+/**
+ * To option slider locations array
+ * @return array
+ */
+class Location implements \Magento\Framework\Option\ArrayInterface{
 
-    //!--
-    //Check if this is necessary or we can just use getSliderTypeArray function
-    //!--
     public function toOptionArray(){
         return \JakeSharp\Productslider\Model\Productslider::getSliderGridLocations();
     }

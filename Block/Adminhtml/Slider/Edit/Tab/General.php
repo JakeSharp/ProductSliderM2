@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Block\Adminhtml\Slider\Edit\Tab;
 
@@ -7,11 +10,29 @@ use \Magento\Store\Model\ScopeInterface as Scope;
 
 class General extends \Magento\Backend\Block\Widget\Form\Generic {
 
+    /**
+     * Config path for default slider settings
+     */
     const XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES = 'productslider/slider_settings/' ;
 
+    /**
+     * @var \Magento\Config\Model\Config\Source\Yesno
+     */
     protected $_yesNo;
+
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
     protected $_scopeConfig;
 
+    /**
+     * @param \Magento\Backend\Block\Template\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\Data\FormFactory $formFactory
+     * @param \Magento\Config\Model\Config\Source\Yesno $yesNo
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param array $data
+     */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Registry $registry,
@@ -25,7 +46,11 @@ class General extends \Magento\Backend\Block\Widget\Form\Generic {
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
-
+    /**
+     * Prepare form
+     *
+     * @return $this
+     */
     protected function _prepareForm() {
 
         $form = $this->_formFactory->create([
@@ -117,7 +142,7 @@ class General extends \Magento\Backend\Block\Widget\Form\Generic {
                 'title' => __('Slider type'),
                 'name' => 'type',
                 'required' => true,
-                'options' => Productslider::getSliderTypeArray()
+                'values' => Productslider::getSliderTypeArray()
             ]
         );
 
@@ -148,7 +173,7 @@ class General extends \Magento\Backend\Block\Widget\Form\Generic {
             ]
         );
 
-        //Reference -  vendor/magento/module-newsletter/Block/Adminhtml/Queue/Edit/Form.php
+        //Reference in  vendor/magento/module-newsletter/Block/Adminhtml/Queue/Edit/Form.php
         $fieldset->addField(
             'start_time',
             'date',

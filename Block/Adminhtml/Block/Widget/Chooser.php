@@ -1,12 +1,29 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Block\Adminhtml\Block\Widget;
 
 class Chooser extends \Magento\Backend\Block\Widget\Grid\Extended
 {
+    /**
+     * @var \JakeSharp\Productslider\Model\ProductsliderFactory
+     */
     protected $_productsliderFactory;
+
+    /**
+     * @var \JakeSharp\Productslider\Model\ResourceModel\Productslider\CollectionFactory
+     */
     protected $_collectionFactory;
 
+    /**
+     * @param \Magento\Backend\Block\Template\Context $context
+     * @param \Magento\Backend\Helper\Data $backendHelper
+     * @param \JakeSharp\Productslider\Model\ProductsliderFactory $productsliderFactory
+     * @param \JakeSharp\Productslider\Model\ResourceModel\Productslider\CollectionFactory $collectionFactory
+     * @param array $data
+     */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Backend\Helper\Data $backendHelper,
@@ -19,6 +36,9 @@ class Chooser extends \Magento\Backend\Block\Widget\Grid\Extended
         parent::__construct($context, $backendHelper, $data);
     }
 
+    /**
+     * @return void
+     */
     protected function _construct()
     {
         parent::_construct();
@@ -28,6 +48,10 @@ class Chooser extends \Magento\Backend\Block\Widget\Grid\Extended
         $this->setDefaultFilter(['chooser_is_active' => '1']);
     }
 
+    /**
+     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @return \Magento\Framework\Data\Form\Element\AbstractElement
+     */
     public function prepareElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
         $uniqId = $this->mathRandom->getUniqueHash($element->getId());
@@ -55,9 +79,13 @@ class Chooser extends \Magento\Backend\Block\Widget\Grid\Extended
         }
 
         $element->setData('after_element_html', $chooser->toHtml());
+
         return $element;
     }
 
+    /**
+     * @return string
+     */
     public function getRowClickCallback()
     {
         $chooserJsObject = $this->getId();
@@ -80,12 +108,18 @@ class Chooser extends \Magento\Backend\Block\Widget\Grid\Extended
         return $js;
     }
 
+    /**
+     * @return $this
+     */
     protected function _prepareCollection()
     {
         $this->setCollection($this->_collectionFactory->create());
         return parent::_prepareCollection();
     }
 
+    /**
+     * @return $this
+     */
     protected function _prepareColumns()
     {
         $this->addColumn(
@@ -138,6 +172,9 @@ class Chooser extends \Magento\Backend\Block\Widget\Grid\Extended
         return parent::_prepareColumns();
     }
 
+    /**
+     * @return string
+     */
     public function getGridUrl()
     {
         return $this->getUrl('productslider/widget/chooser', ['_current' => true]);

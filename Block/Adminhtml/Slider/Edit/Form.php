@@ -1,10 +1,20 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Block\Adminhtml\Slider\Edit;
 
 class Form extends \Magento\Backend\Block\Widget\Form\Generic {
 
+    /**
+     * Prepare form data
+     *
+     * @return \Magento\Backend\Block\Widget\Form
+     */
     protected function _prepareForm() {
+
+        /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(
             [
                 'data' => [

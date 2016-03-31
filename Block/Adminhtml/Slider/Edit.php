@@ -1,8 +1,12 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Block\Adminhtml\Slider;
 
-class Edit extends \Magento\Backend\Block\Widget\Form\Container {
+class Edit extends \Magento\Backend\Block\Widget\Form\Container
+{
     /**
      * Core registry
      *
@@ -10,6 +14,11 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container {
      */
     protected $coreRegistry;
 
+    /**
+     * @param \Magento\Backend\Block\Widget\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param array $data
+     */
     public function __construct(
         \Magento\Backend\Block\Widget\Context $context,
         \Magento\Framework\Registry $registry,
@@ -19,6 +28,11 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container {
         parent::__construct($context, $data);
     }
 
+    /**
+     * Change buttons label, add button
+     *
+     * @return void
+     */
     protected function _construct(){
         $this->_objectId = 'id';
         $this->_blockGroup = 'JakeSharp_Productslider';
@@ -29,7 +43,6 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container {
         $this->buttonList->update('save', 'label', __('Save Slider'));
         $this->buttonList->update('delete', 'label', __('Delete Slider'));
 
-        // Add button like on /vendor/magento/module-customer/Block/Adminhtml/Edit.php
         $this->buttonList->add(
             'save_and_continue',
             [
@@ -43,8 +56,6 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container {
             ],
             10
         );
-
-//        $this->_formScripts[] = '';
     }
 
 

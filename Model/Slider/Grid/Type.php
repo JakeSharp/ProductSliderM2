@@ -1,12 +1,16 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Model\Slider\Grid;
 
 class Type implements \Magento\Framework\Data\OptionSourceInterface{
 
-    //!--
-    //Check if this is necessary or we can just use getSliderTypeArray function
-    //!--
+    /**
+     * To option slider types array
+     * @return array
+     */
     public function toOptionArray(){
         return \JakeSharp\Productslider\Model\Productslider::getSliderTypeArray();
     }

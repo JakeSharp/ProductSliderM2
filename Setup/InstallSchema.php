@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Setup;
 
@@ -12,6 +15,9 @@ class InstallSchema implements InstallSchemaInterface {
 
         $table_name = 'js_productslider';
 
+        /**
+         * Create table 'js_productslider'
+         */
         $table = $setup->getConnection()->newTable($setup->getTable($table_name))
                 ->addColumn('slider_id',
                             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,

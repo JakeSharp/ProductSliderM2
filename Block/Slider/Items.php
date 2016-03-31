@@ -1,27 +1,94 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Block\Slider;
 
 
 class Items extends \Magento\Catalog\Block\Product\AbstractProduct
 {
+    /**
+     * Max number of products in slider
+     */
     const PRODUCTS_COUNT = 10;
 
+    /**
+     * Products collection factory
+     *
+     * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
+     */
     protected $_productsCollectionFactory;
+
+    /**
+     * Product reports collection factory
+     *
+     * @var \Magento\Reports\Model\ResourceModel\Product\CollectionFactory
+     */
     protected $_reportsCollectionFactory;
+
+    /**
+     * Product slider factory
+     *
+     * @var \JakeSharp\Productslider\Model\ProductsliderFactory
+     */
     protected $_sliderFactory;
+
+    /**
+     * Product slider id
+     *
+     * @var int
+     */
     protected $_sliderId;
+
+    /**
+     * Product slider model
+     *
+     * @var \JakeSharp\Productslider\Model\Productslider
+     */
     protected $_slider;
 
-    //For the reports
+    /**
+     * Events type factory
+     *
+     * @var \Magento\Reports\Model\Event\TypeFactory
+     */
     protected $_eventTypeFactory;
+
+    /**
+     * Products visibility
+     *
+     * @var \Magento\Reports\Model\Event\TypeFactory
+     */
     protected $_catalogProductVisibility;
 
-    protected $_template = 'JakeSharp_Productslider::slider/items.phtml';
-
+    /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
     protected $_dateTime;
+
+    /**
+     * Store manager
+     *
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
     protected $_storeManager;
 
+    /**
+     * Product slider template
+     */
+    protected $_template = 'JakeSharp_Productslider::slider/items.phtml';
+
+    /**
+     * @param \Magento\Catalog\Block\Product\Context $context
+     * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productsCollectionFactory
+     * @param \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility
+     * @param \Magento\Reports\Model\ResourceModel\Product\CollectionFactory $reportsCollectionFactory
+     * @param \JakeSharp\Productslider\Model\ProductsliderFactory $productsliderFactory
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
+     * @param \Magento\Reports\Model\Event\TypeFactory $eventTypeFactory
+     * @param array $data
+     */
     public function __construct
     (
         \Magento\Catalog\Block\Product\Context $context,
@@ -43,7 +110,9 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         parent::__construct($context,$data);
     }
 
-
+    /**
+     * Get product slider items based on type
+     */
     public function getSliderProducts()
     {
         $collection = "";
@@ -55,7 +124,7 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
                 $collection = $this->_getBestsellersProducts($this->_productCollectionFactory->create());
                 break;
             case 'mostviewed':
-                $collection =  $this->_getMostViewedProducts($this->_reportsCollectionFactory->create());
+                $collection =  $this->_getMostViewedProducts($this->_productCollectionFactory->create());
                 break;
             case 'onsale':
                 $collection =  $this->_getOnSaleProducts($this->_productCollectionFactory->create());
@@ -68,9 +137,16 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         return $collection;
     }
 
-    protected function _getSliderFeaturedProducts($collectionFactory)
+    /**
+     * Get additional-featured slider products
+     *
+     * @param \Magento\Catalog\Model\ResourceModel\Product\Collection $collection
+     *
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    protected function _getSliderFeaturedProducts($collection)
     {
-        $collection = $this->_addProductAttributesAndPrices($collectionFactory);
+        $collection = $this->_addProductAttributesAndPrices($collection);
         $collection->getSelect()
                     ->join(['slider_products' => $collection->getTable('js_productslider_product')],
                             'e.entity_id = slider_products.product_id AND slider_products.slider_id = '.$this->getSliderId(),
@@ -83,10 +159,17 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         return $collection;
     }
 
-    protected function _getNewProducts($collectionFactory)
+    /**
+     * Get product slider items based on type
+     *
+     * @param \Magento\Catalog\Model\ResourceModel\Product\Collection $collection
+     *
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    protected function _getNewProducts($collection)
     {
-        $collectionFactory->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
-        $collection = $this->_addProductAttributesAndPrices($collectionFactory)
+        $collection->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
+        $collection = $this->_addProductAttributesAndPrices($collection)
             ->addAttributeToFilter(
                 'news_from_date',
                 ['date' => true, 'to' => $this->getEndOfDayDate()],
@@ -110,11 +193,19 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         return $collection;
     }
 
-    protected function _getMostViewedProducts($collectionFactory)
+    /**
+     * Get most viewed products
+     *
+     * @param \Magento\Catalog\Model\ResourceModel\Product\Collection $collection
+     *
+     * @return Collection
+     */
+    protected function _getMostViewedProducts($collection)
     {
         $eventTypes = $this->_eventTypeFactory->create()->getCollection();
+        $reportCollection = $this->_reportsCollectionFactory->create();
 
-        //Getting event type id for catalog_product_view event
+        // Getting event type id for catalog_product_view event
         foreach ($eventTypes as $eventType) {
             if ($eventType->getEventName() == 'catalog_product_view') {
                 $productViewEvent = (int)$eventType->getId();
@@ -122,16 +213,16 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
             }
         }
 
-        $collectionFactory->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
-        $collection = $this->_addProductAttributesAndPrices($collectionFactory);
+        $collection->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
+        $collection = $this->_addProductAttributesAndPrices($collection);
         $collection->getSelect()->reset()->from(
-                    ['report_table_views' => $collection->getTable('report_event')],
+                    ['report_table_views' => $reportCollection->getTable('report_event')],
                     ['views' => 'COUNT(report_table_views.event_id)']
                 )->join(
-                    ['e' => $collection->getProductEntityTableName()],
-                    $collection->getConnection()->quoteInto(
+                    ['e' => $reportCollection->getProductEntityTableName()],
+                    $reportCollection->getConnection()->quoteInto(
                         'e.entity_id = report_table_views.object_id',
-                        $collection->getProductAttributeSetId()
+                        $reportCollection->getProductAttributeSetId()
                     )
                 )->where(
                     'report_table_views.event_type_id = ?',
@@ -153,10 +244,17 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         return $collection;
     }
 
-    protected function _getOnSaleProducts($collectionFactory)
+    /**
+     * Get on sale slider products
+     *
+     * @param \Magento\Catalog\Model\ResourceModel\Product\Collection $collection
+     *
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    protected function _getOnSaleProducts($collection)
     {
-        $collectionFactory->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
-        $collection = $this->_addProductAttributesAndPrices($collectionFactory)
+        $collection->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
+        $collection = $this->_addProductAttributesAndPrices($collection)
             ->addAttributeToFilter(
                 'special_from_date',
                 ['date' => true, 'to' => $this->getEndOfDayDate()],
@@ -180,10 +278,17 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         return $collection;
     }
 
-    protected function _getBestsellersProducts($collectionFactory)
+    /**
+     * Get best selling products
+     *
+     * @param \Magento\Catalog\Model\ResourceModel\Product\Collection $collection
+     *
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    protected function _getBestsellersProducts($collection)
     {
-        $collectionFactory->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
-        $collection = $this->_addProductAttributesAndPrices($collectionFactory);
+        $collection->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
+        $collection = $this->_addProductAttributesAndPrices($collection);
         $collection->getSelect()
                     ->join(['bestsellers' => $collection->getTable('sales_bestsellers_aggregated_yearly')],
                                 'e.entity_id = bestsellers.product_id AND bestsellers.store_id = '.$this->getStoreId(),
@@ -196,6 +301,11 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         return $collection;
     }
 
+    /**
+     * Get slider products including additional products
+     *
+     * @return array
+     */
     public function getSliderProductsCollection()
     {
         $collection = [];
@@ -212,32 +322,64 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         return $collection;
     }
 
+    /**
+     * Get start of day date
+     *
+     * @return string
+     */
     public function getStartOfDayDate()
     {
         return $this->_localeDate->date()->setTime(0, 0, 0)->format('Y-m-d H:i:s');
     }
 
+    /**
+     * Get end of day date
+     *
+     * @return string
+     */
     public function getEndOfDayDate()
     {
         return $this->_localeDate->date()->setTime(23, 59, 59)->format('Y-m-d H:i:s');
     }
 
+    /**
+     * Set slider model
+     *
+     * @param \JakeSharp\Productslider\Model\Productslider $slider
+     *
+     * @return this
+     */
     public function setSlider($slider)
     {
         $this->_slider = $slider;
         return $this;
     }
 
+    /**
+     * Get slider id
+     *
+     * @return int
+     */
     public function getSliderId()
     {
         return $this->_slider->getId();
     }
 
+    /**
+     * Get slider
+     *
+     * @return \JakeSharp\Productslider\Model\Productslider
+     */
     public function getSlider()
     {
         return $this->_slider;
     }
 
+    /**
+     * @param int
+     *
+     * @return this
+     */
     public function setSliderId($sliderId)
     {
         $this->_sliderId = $sliderId;
@@ -251,55 +393,28 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getSliderDisplayId()
     {
         return $this->_dateTime->timestamp().$this->getSliderId();
     }
 
+    /**
+     * @return int
+     */
     public function getStoreId()
     {
         return $this->_storeManager->getStore()->getId();
     }
 
+    /**
+     * @return int
+     */
     public function getProductsCount()
     {
         return self::PRODUCTS_COUNT;
     }
-
-    public function testCollection()
-    {
-        $collection2 = $this->_productCollectionFactory->create();
-        $todayStartOfDayDate = $this->_localeDate->date()->setTime(0, 0, 0)->format('Y-m-d H:i:s');
-        $todayEndOfDayDate = $this->_localeDate->date()->setTime(23, 59, 59)->format('Y-m-d H:i:s');
-
-        $collection =
-            $this->_addProductAttributesAndPrices($collection2)
-            ->addAttributeToFilter(
-                'news_from_date',
-                ['date' => true, 'to' => $todayEndOfDayDate],
-                'left'
-            )
-            ->addAttributeToFilter(
-                'news_to_date',
-                [
-                    'or' => [
-                        0 => ['date' => true, 'from' => $todayStartOfDayDate],
-                        1 => ['is' => new \Zend_Db_Expr('null')],
-                    ]
-                ],
-                'left'
-            )
-            ->addAttributeToSort(
-               'news_from_date',
-               'description')
-            ->setPageSize(10)->setCurPage(1);
-
-        echo "<pre>";
-        echo $collection->getSelect()->__toString();
-        echo "</pre>";
-        die;
-
-    }
-
 
 }

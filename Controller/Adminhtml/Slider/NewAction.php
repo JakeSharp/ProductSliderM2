@@ -1,13 +1,19 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Controller\Adminhtml\Slider;
 
-//reference /Applications/AMPPS/www/m2/vendor/magento/module-customer/Controller/Adminhtml/Index/NewAction.php
-
 class NewAction extends \JakeSharp\Productslider\Controller\Adminhtml\Slider
 {
+    /**
+     * Create new slider action
+     *
+     * @return \Magento\Backend\Model\View\Result\Forward
+     */
     public function execute(){
-        //Forward to edit action
+        //Forward to the edit action
         $resultForward = $this->_resultForwardFactory->create();
         $resultForward->forward('edit');
         return $resultForward;

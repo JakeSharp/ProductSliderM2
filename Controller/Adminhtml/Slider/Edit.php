@@ -1,22 +1,18 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Controller\Adminhtml\Slider;
 
 class Edit extends \JakeSharp\Productslider\Controller\Adminhtml\Slider {
 
+    /**
+     * Edit slider page
+     *
+     * @return \Magento\Framework\Controller\ResultInterface
+     */
     public function execute(){
-
-//        $id = $this->getRequest()->getParam('id');
-//        $model = $this->_sliderFactory->create();
-//
-//        if ($id) {
-//            $model->load($id);
-//            if (!$model->getId()) {
-//                $this->messageManager->addError(__('This slider no longer exists.').' slider_id = '.$id);
-//                $resultForward = $this->_resultRedirectFactory->create();
-//                return $resultForward->setPath('*/*/');
-//            }
-//        }
 
         $sliderId = (int)$this->getRequest()->getParam('id', false);
 
@@ -31,7 +27,9 @@ class Edit extends \JakeSharp\Productslider\Controller\Adminhtml\Slider {
         }
 
 
-        // set entered data if there was an error when saving
+        /**
+         * Set entered data if there was an error when saving
+         */
         $data = $this->_getSession()->getFormData(true);
         if (!empty($data)) {
             $model->setData($data);

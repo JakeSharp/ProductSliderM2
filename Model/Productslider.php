@@ -1,12 +1,25 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Model;
 
+/**
+ * Productslider model
+ * @package JakeSharp\Productslider\Model
+ */
 class Productslider extends \Magento\Framework\Model\AbstractModel {
 
+    /**
+     * Slider statuses
+     */
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
 
+    /**
+     * Slider types
+     */
     const SLIDER_TYPE_DEFAULT = "";
     const SLIDER_TYPE_NEW = 'new';
     const SLIDER_TYPE_BESTSELLERS = 'bestsellers';
@@ -14,15 +27,9 @@ class Productslider extends \Magento\Framework\Model\AbstractModel {
     const SLIDER_TYPE_ONSALE = 'onsale';
     const SLIDER_TYPE_FEATURED = 'featured';
 
-//    const SLIDER_TYPE_NEW = 1;
-//    const SLIDER_TYPE_BESTSELLERS = 2;
-//    const SLIDER_TYPE_MOSTVIEWED = 3;
-//    const SLIDER_TYPE_ONSALE = 4;
-//    const SLIDER_TYPE_FEATURED = 5;
-//    const SLIDER_TYPE_RELATED = 6;
-//    const SLIDER_TYPE_UPSELL = 7;
-//    const SLIDER_TYPE_CROSSSELL = 8;
-
+    /**
+     * Slider locations/positions displayed on frontend
+     */
     const SLIDER_LOCATION_DEFAULT = "";
     const HOMEPAGE_CONTENT_TOP = 'homepage-content-top';
     const HOMEPAGE_CONTENT_BOTTOM = 'homepage-content-bottom';
@@ -47,16 +54,29 @@ class Productslider extends \Magento\Framework\Model\AbstractModel {
     const CUSTOMER_SIDEBAR_ADDITIONAL_TOP = 'customer-sidebar-additional-top';
     const CUSTOMER_SIDEBAR_ADDITIONAL_BOTTOM = 'customer-sidebar-additional-bottom';
 
-    // Set resource class
-    protected function _construct(){
+    /**
+     * Set resource class
+     */
+    protected function _construct()
+    {
         $this->_init('JakeSharp\Productslider\Model\ResourceModel\Productslider');
     }
 
+    /**
+     * Slider statuses
+     *
+     * @var array
+     */
     protected static $statusOptions = [
         self::STATUS_ENABLED => 'Enabled',
         self::STATUS_DISABLED => 'Disabled',
     ];
 
+    /**
+     * Slider types
+     *
+     * @var array
+     */
     protected static $sliderTypes = [
         self::SLIDER_TYPE_DEFAULT => '--- Select Slider Type --',
         self::SLIDER_TYPE_NEW => 'New Products',
@@ -66,6 +86,10 @@ class Productslider extends \Magento\Framework\Model\AbstractModel {
         self::SLIDER_TYPE_FEATURED => 'Featured Products',
     ];
 
+    /**
+     * Formatted slider locations
+     * @return array
+     */
     public static function getSliderLocations()
     {
         return [
@@ -113,6 +137,10 @@ class Productslider extends \Magento\Framework\Model\AbstractModel {
         ];
     }
 
+    /**
+     * Not formatted slider locations
+     * @return array
+     */
     public static function getSliderGridLocations()
     {
         return [
@@ -142,26 +170,46 @@ class Productslider extends \Magento\Framework\Model\AbstractModel {
         ];
     }
 
+    /**
+     * Slider statuses
+     * @return array
+     */
     public static function getStatusArray()
     {
         return self::$statusOptions;
     }
 
+    /**
+     * Slider types
+     * @return array
+     */
     public static function getSliderTypeArray()
     {
         return self::$sliderTypes;
     }
 
+    /**
+     * Slider statuses label
+     * @return array
+     */
     public function getStatusLabel()
     {
         return self::$statusOptions[$this->getStatus()];
     }
 
+    /**
+     * Slider types label
+     * @return array
+     */
     public function getSliderTypeLabel()
     {
         return self::$sliderTypes[$this->getType()];
     }
 
+    /**
+     * Additional products for current slider
+     * @return array
+     */
     public function getSelectedSliderProducts()
     {
         if (!$this->getSliderId()) {
@@ -174,7 +222,5 @@ class Productslider extends \Magento\Framework\Model\AbstractModel {
             $this->setData('slider_products', $array);
         }
         return $array;
-
     }
-
 }

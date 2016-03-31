@@ -1,15 +1,41 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Block\Adminhtml\Slider\Edit\Tab;
 
 class Products extends \Magento\Backend\Block\Widget\Grid\Extended {
 
-    //For geting product collection
+    /**
+     * @var \Magento\Catalog\Model\ProductFactory
+     */
     protected $_productFactory;
+
+    /**
+     * @var \Magento\Framework\App\ResourceConnection
+     */
     protected $_resource;
-    protected $_coreRegistry = null;
+
+    /**
+     * @var \Magento\Framework\Registry
+     */
+    protected $_coreRegistry;
+
+    /**
+     * @var \Magento\Catalog\Model\Product\Visibility
+     */
     protected $_catalogProductVisibility;
 
+    /**
+     * @param \Magento\Backend\Block\Template\Context $context
+     * @param \Magento\Catalog\Model\ProductFactory $productFactory
+     * @param \Magento\Backend\Helper\Data $helper
+     * @param \Magento\Framework\Registry $coreRegistry
+     * @param \Magento\Framework\App\ResourceConnection $resource
+     * @param \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility
+     * @param array $data
+     */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Catalog\Model\ProductFactory $productFactory,
@@ -26,7 +52,11 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended {
         parent::__construct($context, $helper, $data);
     }
 
-    protected function _construct(){
+    /**
+     * @return void
+     */
+    protected function _construct()
+    {
         parent::_construct();
         $this->setId('products_grid');
         $this->setDefaultSort('entity_id');
@@ -35,12 +65,21 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended {
         $this->setUseAjax(true);
     }
 
+    /**
+     * Retrieve product slider object
+     *
+     * @return \JakeSharp\Productslider\Model\Productslider
+     */
     public function getSlider()
     {
         return $this->_coreRegistry->registry('product_slider');
     }
 
-
+    /**
+     * @param \Magento\Backend\Block\Widget\Grid\Column $column
+     *
+     * @return $this
+     */
     protected function _addColumnFilterToCollection($column)
     {
         // Set custom filter for in slider flag
@@ -60,7 +99,11 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended {
         return $this;
     }
 
-    protected function _prepareCollection(){
+    /**
+     * @return \Magento\Backend\Block\Widget\Grid
+     */
+    protected function _prepareCollection()
+    {
 
         if ($this->getSlider()->getSliderId()) {
             $this->setDefaultFilter(['in_slider' => 1]);
@@ -88,6 +131,9 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended {
         return parent::_prepareCollection();
     }
 
+    /**
+     * @return \Magento\Backend\Block\Widget\Grid\Extended
+     */
     protected function _prepareColumns()
     {
 
@@ -155,6 +201,9 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended {
 
     }
 
+    /**
+     * @return array
+     */
     public function getSelectedSliderProducts()
     {
         $slider_id = $this->getRequest()->getParam('id');
@@ -171,6 +220,9 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended {
 
     }
 
+    /**
+     * @return array|mixed
+     */
     protected function _getSelectedProducts()
     {
         $products = $this->getRequest()->getParam('selected_products');
@@ -181,7 +233,11 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended {
         return $products;
     }
 
-    /* Retrieve grid reload url  */
+    /**
+     * Retrieve grid reload url
+     *
+     * @return string
+     */
     public function getGridUrl()
     {
         return $this->getUrl('*/*/productsgrid', ['_current' => true]);

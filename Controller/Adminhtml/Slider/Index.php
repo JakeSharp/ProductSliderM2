@@ -1,9 +1,17 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Controller\Adminhtml\Slider;
 
 class Index extends \JakeSharp\Productslider\Controller\Adminhtml\Slider {
 
+    /**
+     * Slider index action
+     *
+     * @return \Magento\Framework\Controller\ResultInterface
+     */
     public function execute(){
         if ($this->getRequest()->getQuery('ajax')) {
             $resultForward = $this->_resultForwardFactory->create();

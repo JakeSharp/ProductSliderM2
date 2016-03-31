@@ -1,12 +1,27 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Controller\Adminhtml\Widget;
 
 class Chooser extends \Magento\Backend\App\Action
 {
+    /**
+     * @var \Magento\Framework\View\LayoutFactory
+     */
     protected $_layoutFactory;
+
+    /**
+     * @var \Magento\Framework\Controller\Result\RawFactory
+     */
     protected $_resultRawFactory;
 
+    /**
+     * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\View\LayoutFactory $layoutFactory
+     * @param \Magento\Framework\Controller\Result\RawFactory $resultRawFactory
+     */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\LayoutFactory $layoutFactory,
@@ -31,6 +46,7 @@ class Chooser extends \Magento\Backend\App\Action
 
         /** @var \Magento\Framework\Controller\Result\Raw $resultRaw */
         $resultRaw = $this->_resultRawFactory->create();
+
         $resultRaw->setContents($pagesGrid->toHtml());
         return $resultRaw;
     }

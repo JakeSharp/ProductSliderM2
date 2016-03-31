@@ -1,16 +1,31 @@
 <?php
+/**
+ * Copyright © 2016 Jake Sharp (http://www.jakesharp.co/) All rights reserved.
+ */
 
 namespace JakeSharp\Productslider\Model\ResourceModel;
 
 class Productslider extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb {
 
+    /**
+     * Additional slider products table
+     */
     const SLIDER_PRODUCTS_TABLE = 'js_productslider_product';
 
-    protected function _construct(){
+    /**
+     * @return void
+     */
+    protected function _construct()
+    {
         $this->_init('js_productslider','slider_id');
     }
 
-    //Get product for selected slider
+    /**
+     * Additional (featured) products for current slider
+     *
+     * @param \JakeSharp\Productslider\Model\Productslider $slider
+     * @return array
+     */
     public function getSliderProducts($slider)
     {
         $select = $this->getConnection()->select()->from(
@@ -25,18 +40,34 @@ class Productslider extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         return $this->getConnection()->fetchPairs($select, $bind);
     }
 
+    /**
+     * Additional slider products table getter
+     * @return string
+     */
     public function getSliderProductsTable()
     {
         return $this->getTable(self::SLIDER_PRODUCTS_TABLE);
     }
 
+    /**
+     * Perform actions after object (slider) save
+     *
+     * @param \Magento\Framework\Model\AbstractModel $object
+     * @return $this
+     */
     protected function _afterSave(\Magento\Framework\Model\AbstractModel $object)
     {
-        $this->_saveSliderProducts($object);
+        $this->_updateSliderProducts($object);
         return parent::_afterSave($object);
     }
 
-    protected function _saveSliderProducts($slider)
+    /**
+     * Update (save new or delete old) additional slider products
+     *
+     * @param \Magento\Framework\Model\AbstractModel $object
+     * @return $this
+     */
+    protected function _updateSliderProducts($slider)
     {
         $id = $slider->getSliderId();
 
@@ -44,6 +75,7 @@ class Productslider extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
          * new slider-product relationships
          */
         $products = $slider->getPostedProducts();
+
         /**
          * Example re-save slider
          */
@@ -103,7 +135,5 @@ class Productslider extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         }
 
         return $this;
-
     }
-
 }
