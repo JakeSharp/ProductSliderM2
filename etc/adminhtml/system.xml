@@ -101,6 +101,9 @@
                     <label>Slides to scroll on small</label>
                 </field>
             </group>
+            <group id="implementation" translate="label" type="text" sortOrder="140" showInWebsite="1" showInStore="1" showInDefault="1">
+                <frontend_model>JakeSharp\Productslider\Block\Adminhtml\System\Implementation</frontend_model>
+            </group>
         </section>
     </system>
 </config>
