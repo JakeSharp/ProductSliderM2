@@ -24,6 +24,9 @@ A FREE Magento 2 module for managing product sliders
 Check LIVE demo:
 - <a href="http://demo.jakesharpdev.com/" target="_blank">Frontend demo</a>
 - <a href="http://demo.jakesharpdev.com/admin/" target="_blank">Backend demo</a>
+<br/>
+user: <strong>demo</strong>
+pass: <strong>demo123</strong>
 
 # Installation:
 <h2>Step 1</h2>
