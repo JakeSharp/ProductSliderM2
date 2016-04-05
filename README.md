@@ -13,15 +13,15 @@ Or **mix and match** with the ones you want, or just make a **custom slider**. C
 
 
 # Features:
-- ⏱**Schedule slider** - Published on specific date and time
+- ⏱ **Schedule slider** - Published on specific date and time
 - **Place anywhere** - Or exclude from an area like checkout and cart
 - **Place easily** - using either XML, .phtml or a *widget*
 - Display products in a default basic grid if you need
 - 🎉 **Slider effects** - Choose any you like
 - 🖖 **Pick and choose** - Add products manually <br/>
-  Use case example: Your online channel just launched and Magento doesn't have a clue which your bestseller products are. 
-- **General settings** - Make one setting to rule them all
-- **Per slider setting** - Exclude from the general rules
+  For example: Your online channel just launched and Magento doesn't have a clue which your bestseller products are. 
+- **General settings** - One set of settings to rule them all
+- **Per slider settings** - Exclude from the general rules
 
 <br/>
 
