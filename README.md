@@ -17,9 +17,9 @@ A FREE Magento 2 module to create and manage product sliders.
 - Display products in a default basic grid if you need
 - Slider effects - Choose any you like
 - 🖖*Pick and choose* - Add products manually <br/>
-  Use case example: When you opened up your online store and Magento doesn't yet know what your bestseller product are. 
-- General settings - Make one setting to rule them all
-- Per slider setting - Exclude from the general rules
+  Use case example: Your online channel just launched and Magento doesn't have a clue which your bestseller products are. 
+- *General settings* - Make one setting to rule them all
+- **Per slider setting** - Exclude from the general rules
 
 <br/>
 
