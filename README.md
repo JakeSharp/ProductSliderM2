@@ -1,23 +1,25 @@
 # ProductSliderM2
-A FREE Magento 2 module for managing product sliders
+A FREE Magento 2 module to create and manage product sliders.
 
-- Build on top of fully responsive <a href="http://kenwheeler.github.io/slick/" target="_blank">Slick slider</a>
-- Display different type of products on various locations
+- Built on top of fully responsive <a href="http://kenwheeler.github.io/slick/" target="_blank">Slick slider</a>
+- Display items like:
 	-	Featured products
 	-	New products
 	-	Best selling products
 	-	On sale products
 	-	Most viewed products
 
+
 # Features:
-- Schedule slider to be published on specific date and time
-- Various locations to choose for slider display
-- Display slider on any location using xml or custom code
-- Display sliders using Magento widgets
-- Display products in basic grid if slider is not an option
-- Choose different type off slider effects
-- Choose additionals products to be displayed along basic types, <br/>
-  Example (display best sellers and additional three products ) 
+- *Schedule slider* - Published on specific date and time
+- Place anywhere - Or exclude from an area like checkout and cart
+- Place easily - using either XML, .phtml or a *widget*
+- Display products in a default basic grid if you need
+- Slider effects - Choose any you like
+- 🖖*Pick and choose* - Add products manually
+  Use case example: When you opened up your online store and Magento doesn't yet know what your bestseller product are. 
+- General settings - Make one setting to rule them all
+- Per slider setting - Exclude from the general rules
 
 <br/>
 
