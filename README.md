@@ -2,13 +2,14 @@
 A FREE Magento 2 module to create and manage product sliders.
 
 - Built on top of fully responsive <a href="http://kenwheeler.github.io/slick/" target="_blank">Slick slider</a>
-- Display products like:
+- Display products such as:
 	-	**Featured** 
 	-	**New** 
 	-	**Bestsellers**
 	-	**On sale** 
 	-	**Most viewed**
-	-	**CUSTOM products**
+
+Or **mix and match** with the ones you want, or just make a **custom slider**. Choices. Good to have them.
 
 
 # Features:
