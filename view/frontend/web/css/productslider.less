@@ -1,15 +1,40 @@
 @media (max-width: 767px) {
-
   .columns .column {
     min-width: 0;
     min-height: 0;
   }
-
 }
 
 //Slick
-.slick-prev:before, .slick-next:before {
-  color: #FA081C;
+.product-slider-wrapper {
+  .slider-list {
+    .slick-slider {
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 0;
+      padding: 0 25px;
+      .slick-slide {
+        margin-left: 0;
+      }
+      .slick-prev:before, .slick-next:before {
+        color: #000;
+      }
+      .slick-prev {
+        left: 0;
+      }
+      .slick-next {
+        right: 0;
+      }
+      button {
+        &.slick-arrow {
+          box-shadow: none;
+          &:hover, &:active, &:focus {
+            border: none;
+          }
+        }
+      }
+    }
+  }
 }
 
 //Slick & widget
