@@ -26,47 +26,67 @@
                     <comment>Display title on frontend</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="grid" translate="label" type="select" sortOrder="6" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="display_price" translate="label" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1">
+                    <label>Display price</label>
+                    <comment>Display price on frontend</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_cart" translate="label" type="select" sortOrder="15" showInWebsite="1" showInStore="1" showInDefault="1">
+                    <label>Display Cart</label>
+                    <comment>Display add to cart button on frontend</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_wishlist" translate="label" type="select" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1">
+                    <label>Display Wishlist</label>
+                    <comment>Display add to wish list on frontend</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_compare" translate="label" type="select" sortOrder="25" showInWebsite="1" showInStore="1" showInDefault="1">
+                    <label>Display Compare</label>
+                    <comment>Display add to compare on frontend</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="grid" translate="label" type="select" sortOrder="30" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Items in grid</label>
                     <comment>Display items in the grid, without slider </comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="exclude_from_cart" translate="label" type="select" sortOrder="7" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="exclude_from_cart" translate="label" type="select" sortOrder="35" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Exclude from cart</label>
                     <comment>Don't display sliders on cart page</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="exclude_from_checkout" translate="label" type="select" sortOrder="8" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="exclude_from_checkout" translate="label" type="select" sortOrder="40" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Exclude from checkout</label>
                     <comment>Don't display sliders on checkout</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="navigation" translate="label" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="navigation" translate="label" type="select" sortOrder="45" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Navigation</label>
                     <comment>Enable Navigation (dots below slider)</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="infinite" translate="label comment" type="select" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="infinite" translate="label comment" type="select" sortOrder="50" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Infinite</label>
                     <comment>Infinite loop sliding</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="slides_to_show" translate="label comment" type="text" sortOrder="30" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="slides_to_show" translate="label comment" type="text" sortOrder="55" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Slides to show</label>
                     <comment>Number of slides to show</comment>
                 </field>
-                <field id="slides_to_scroll" translate="label comment" type="text" sortOrder="40" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="slides_to_scroll" translate="label comment" type="text" sortOrder="60" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Slides to scroll</label>
                     <comment>Number of slides to scroll</comment>
                 </field>
-                <field id="speed" translate="label" type="text" sortOrder="50" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="speed" translate="label" type="text" sortOrder="65" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Speed</label>
                 </field>
-                <field id="autoplay" translate="label" type="select" sortOrder="60" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="autoplay" translate="label" type="select" sortOrder="70" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Autoplay</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="autoplay_speed" translate="label" type="text" sortOrder="70" showInWebsite="1" showInStore="1" showInDefault="1">
+                <field id="autoplay_speed" translate="label" type="text" sortOrder="75" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Autoplay speed</label>
                 </field>
                 <field id="rtl" translate="label" type="select" sortOrder="90" showInWebsite="1" showInStore="1" showInDefault="1">

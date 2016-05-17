@@ -112,6 +112,54 @@ class General extends \Magento\Backend\Block\Widget\Form\Generic {
         );
 
         $fieldset->addField(
+            'display_price',
+            'select',
+            [
+                'label' => __('Display price'),
+                'title' => __('Display price'),
+                'name' => 'display_price',
+                'values' => $yesno,
+                'value' => $this->_scopeConfig->getValue(self::XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES.'display_price',Scope::SCOPE_STORE)
+            ]
+        );
+
+        $fieldset->addField(
+            'display_cart',
+            'select',
+            [
+                'label' => __('Display cart'),
+                'title' => __('Display add to cart button'),
+                'name' => 'display_cart',
+                'values' => $yesno,
+                'value' => $this->_scopeConfig->getValue(self::XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES.'display_cart',Scope::SCOPE_STORE)
+            ]
+        );
+
+        $fieldset->addField(
+            'display_wishlist',
+            'select',
+            [
+                'label' => __('Display wishlist'),
+                'title' => __('Display add to wish list'),
+                'name' => 'display_wishlist',
+                'values' => $yesno,
+                'value' => $this->_scopeConfig->getValue(self::XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES.'display_wishlist',Scope::SCOPE_STORE)
+            ]
+        );
+
+        $fieldset->addField(
+            'display_compare',
+            'select',
+            [
+                'label' => __('Display compare'),
+                'title' => __('Display add to compare'),
+                'name' => 'display_compare',
+                'values' => $yesno,
+                'value' => $this->_scopeConfig->getValue(self::XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES.'display_compare',Scope::SCOPE_STORE)
+            ]
+        );
+
+        $fieldset->addField(
             'status',
             'select',
             [

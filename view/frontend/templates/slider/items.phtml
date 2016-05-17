@@ -16,9 +16,9 @@
 <?php $viewMode = 'grid' ?>
 <?php $class = $slider->getType() ?>
 <?php $type = "" ?>
-<?php $showWishlist = true ?>
-<?php $showCompare = true ?>
-<?php $showCart = true ?>
+<?php $showWishlist = $slider->getDisplayWishlist() ?>
+<?php $showCompare = $slider->getDisplayCompare() ?>
+<?php $showCart = $slider->getDisplayCart() ?>
 <div class="block block-product-slider slider-list <?php /* @escapeNotVerified */ echo $class; ?>" <?php echo $slider->getRtl() ? 'dir="rtl" ' : "" ?> >
     <?php if($slider->getDisplayTitle()): ?>
         <div class="block-title title">
@@ -42,9 +42,9 @@
                         <strong class="product name product-item-name"><a class="product-item-link" title="<?php echo $block->escapeHtml($_item->getName()) ?>" href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>">
                             <?php echo $block->escapeHtml($_item->getName()) ?></a>
                         </strong>
-
-                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item); ?>
-
+                        <?php if($slider->getDisplayPrice()): ?>
+                            <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item); ?>
+                        <?php endif ?>
                             <?php if ($templateType): ?>
                                 <?php echo $block->getReviewsSummaryHtml($_item, $templateType) ?>
                             <?php endif; ?>

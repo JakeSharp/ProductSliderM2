@@ -13,6 +13,10 @@
             </general>
             <slider_settings>
                 <display_title>0</display_title>
+                <display_price>1</display_price>
+                <display_cart>1</display_cart>
+                <display_wishlist>1</display_wishlist>
+                <display_compare>1</display_compare>
                 <grid>0</grid>
                 <exclude_from_cart>0</exclude_from_cart>
                 <exclude_from_checkout>0</exclude_from_checkout>
