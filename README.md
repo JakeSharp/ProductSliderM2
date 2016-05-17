@@ -16,7 +16,7 @@ Or **mix and match** with the ones you want, or just make a **custom slider**. C
 - ⏱ **Schedule slider** - Publish on specific date and time
 - **Place anywhere** - Or exclude from an area like checkout and cart
 - **Place easily** - using either XML, .phtml or a *widget*
-- Display products in a default basic grid if you need
+- Display products in a default basic grid if needed
 - 🎉 **Slider effects** - Choose any you like
 - 🖖 **Pick and choose** - Add products manually <br/>
   For example: Your online channel just launched and Magento doesn't have a clue which your bestseller products are.
