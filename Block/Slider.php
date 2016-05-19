@@ -41,13 +41,11 @@ class Slider extends \Magento\Framework\View\Element\Template implements \Magent
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \JakeSharp\Productslider\Model\ResourceModel\Productslider\CollectionFactory $sliderCollectionFactory,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Magento\Framework\View\LayoutInterface $layoutConfig,
         array $data = []
     ){
         $this->_sliderCollectionFactory = $sliderCollectionFactory;
-        $this->_scopeConfig = $scopeConfig;
-        $this->_layoutConfig = $layoutConfig;
+        $this->_scopeConfig = $context->getScopeConfig();
+        $this->_layoutConfig = $context->getLayout();
         parent::__construct($context,$data);
     }
 

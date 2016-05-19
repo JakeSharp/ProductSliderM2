@@ -38,11 +38,10 @@ class Advanced extends \Magento\Backend\Block\Widget\Form\Generic
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Config\Model\Config\Source\Yesno $yesNo,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         array $data = []
     ){
         $this->_yesNo = $yesNo;
-        $this->_scopeConfig = $scopeConfig;
+        $this->_scopeConfig = $context->getScopeConfig();
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
