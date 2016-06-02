@@ -97,6 +97,66 @@ class General extends \Magento\Backend\Block\Widget\Form\Generic {
             ]
         );
 
+        $fieldset->addField(
+            'status',
+            'select',
+            [
+                'label' => __('Slider status'),
+                'title' => __('Slider status'),
+                'name' => 'status',
+                'options' => Productslider::getStatusArray(),
+                'disabled' => false,
+            ]
+        );
+
+        $fieldset->addField(
+            'description',
+            'textarea',
+            [
+                'name' => 'description',
+                'label' => __('Description'),
+                'title' => __('Description'),
+                'note' => __('Not visible on frontend. Only for admin remainder.'),
+            ]
+        );
+
+        $fieldset->addField(
+            'type',
+            'select',
+            [
+                'label' => __('Slider type'),
+                'title' => __('Slider type'),
+                'name' => 'type',
+                'required' => true,
+                'values' => Productslider::getSliderTypeArray(),
+                'note' => __('Auto related products available only on product page location.'),
+            ]
+        );
+
+        $fieldset->addField(
+            'location',
+            'select',
+            [
+                'label' => __('Slider location'),
+                'title' => __('Slider location'),
+                'name' => 'location',
+                'required' => false,
+//                'options' => Productslider::getSliderLocations()
+                'values' => Productslider::getSliderLocations()
+            ]
+        );
+
+        $fieldset->addField(
+            'products_number',
+            'text',
+            [
+                'name' => 'products_number',
+                'label' => __('Products number'),
+                'title' => __('Products number'),
+                'value' => $this->_scopeConfig->getValue(self::XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES.'products_number',Scope::SCOPE_STORE),
+                'note' => __('Number of products displayed in slider. Max. 20 products.'),
+            ]
+        );
 
         $fieldset->addField(
             'display_title',
@@ -157,55 +217,6 @@ class General extends \Magento\Backend\Block\Widget\Form\Generic {
                 'value' => $this->_scopeConfig->getValue(self::XML_PATH_PRODUCT_SLIDER_DEFAULT_VALUES.'display_compare',Scope::SCOPE_STORE)
             ]
         );
-
-        $fieldset->addField(
-            'status',
-            'select',
-            [
-                'label' => __('Slider status'),
-                'title' => __('Slider status'),
-                'name' => 'status',
-                'options' => Productslider::getStatusArray(),
-                'disabled' => false,
-            ]
-        );
-
-        $fieldset->addField(
-            'description',
-            'textarea',
-            [
-                'name' => 'description',
-                'label' => __('Description'),
-                'title' => __('Description'),
-                'note' => __('Not visible on frontend. Only for admin remainder.'),
-            ]
-        );
-
-        $fieldset->addField(
-            'type',
-            'select',
-            [
-                'label' => __('Slider type'),
-                'title' => __('Slider type'),
-                'name' => 'type',
-                'required' => true,
-                'values' => Productslider::getSliderTypeArray()
-            ]
-        );
-
-        $fieldset->addField(
-            'location',
-            'select',
-            [
-                'label' => __('Slider location'),
-                'title' => __('Slider location'),
-                'name' => 'location',
-                'required' => false,
-//                'options' => Productslider::getSliderLocations()
-                'values' => Productslider::getSliderLocations()
-            ]
-        );
-
 
         $fieldset->addField(
             'grid',

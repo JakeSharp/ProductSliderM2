@@ -21,6 +21,10 @@
             </group>
             <group id="slider_settings" translate="label" type="text" sortOrder="130" showInWebsite="1" showInStore="1" showInDefault="1">
                 <label>Default Slider Values</label>
+                <field id="products_number" translate="label" type="text" sortOrder="1" showInWebsite="1" showInStore="1" showInDefault="1">
+                     <label>Products number</label>
+                     <comment>Number of products in slider</comment>
+                 </field>
                 <field id="display_title" translate="label" type="select" sortOrder="5" showInWebsite="1" showInStore="1" showInDefault="1">
                     <label>Display title</label>
                     <comment>Display title on frontend</comment>

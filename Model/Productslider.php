@@ -26,6 +26,7 @@ class Productslider extends \Magento\Framework\Model\AbstractModel {
     const SLIDER_TYPE_MOSTVIEWED = 'mostviewed';
     const SLIDER_TYPE_ONSALE = 'onsale';
     const SLIDER_TYPE_FEATURED = 'featured';
+    const SLIDER_TYPE_AUTORELATED = 'autorelated';
 
     /**
      * Slider locations/positions displayed on frontend
@@ -84,6 +85,7 @@ class Productslider extends \Magento\Framework\Model\AbstractModel {
         self::SLIDER_TYPE_MOSTVIEWED => 'Most Viewed Products',
         self::SLIDER_TYPE_ONSALE => 'On Sale Products',
         self::SLIDER_TYPE_FEATURED => 'Featured Products',
+        self::SLIDER_TYPE_AUTORELATED => 'Auto Related Products',
     ];
 
     /**

@@ -11,7 +11,7 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
     /**
      * Max number of products in slider
      */
-    const PRODUCTS_COUNT = 10;
+    const MAX_PRODUCTS_COUNT = 20;
 
     /**
      * Products collection factory
@@ -80,6 +80,11 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
     protected $_template = 'JakeSharp_Productslider::slider/items.phtml';
 
     /**
+     * @var
+     */
+    protected $_productsNumber;
+
+    /**
      * @param \Magento\Catalog\Block\Product\Context $context
      * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productsCollectionFactory
      * @param \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility
@@ -111,12 +116,13 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
     }
 
     /**
-     * Get product slider items based on type
+     * @param $type
+     * @return Collection|\Magento\Catalog\Model\ResourceModel\Product\Collection|string
      */
-    public function getSliderProducts()
+    public function getSliderProducts($type)
     {
         $collection = "";
-        switch($this->_slider->getType()){
+        switch($type){
             case 'new':
                 $collection =  $this->_getNewProducts($this->_productCollectionFactory->create());
                 break;
@@ -131,6 +137,9 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
                 break;
             case 'featured':
                 $collection =  $this->_getSliderFeaturedProducts($this->_productCollectionFactory->create());
+                break;
+            case 'autorelated':
+                $collection =  $this->_getAutoRelatedProducts($this->_productCollectionFactory->create());
                 break;
         }
 
@@ -155,6 +164,12 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
         $collection->addStoreFilter($this->getStoreId())
                     ->setPageSize($this->getProductsCount())
                     ->setCurPage(1);
+
+        $this->_productsNumber = $this->getProductsCount() - $collection->count();
+
+        \Magento\Framework\App\ObjectManager::getInstance()
+             ->get('Psr\Log\LoggerInterface')
+             ->debug("this->_productsNumber = ".$this->_productsNumber);
 
         return $collection;
     }
@@ -302,6 +317,37 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
     }
 
     /**
+     * @param $collection
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    protected function _getAutoRelatedProducts($collection)
+    {
+        $product = $this->getProduct();
+
+        if(!$product){
+            return;
+        }
+
+        $categories = $this->getProduct()->getCategoryIds();
+
+        $collection->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
+        $collection = $this->_addProductAttributesAndPrices($collection);
+        $collection->addCategoriesFilter(['in' => $categories]);
+
+        $collection->addStoreFilter($this->getStoreId())
+                    ->setPageSize($this->getProductsCount())
+                    ->setCurPage(1);
+        \Magento\Framework\App\ObjectManager::getInstance()
+            ->get('Psr\Log\LoggerInterface')
+            ->debug($this->getProductsCount());
+
+        $collection->addAttributeToFilter('entity_id', array('neq' => $product->getId()));
+        $collection->getSelect()->order('rand()');
+
+        return $collection;
+    }
+
+    /**
      * Get slider products including additional products
      *
      * @return array
@@ -309,14 +355,20 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
     public function getSliderProductsCollection()
     {
         $collection = [];
-        $featuredProducts = $this->getSliderFeaturedProducts();
-        $sliderProducts = $this->getSliderProducts();
+        $type = $this->_slider->getType();
+
+        $featuredProducts = $this->getSliderProducts("featured");
         if(count($featuredProducts)>0){
             $collection['featured'] = $featuredProducts;
         }
 
-        if(count($sliderProducts)>0){
-            $collection['products'] = $sliderProducts;
+        if($type !== "featured"){
+            if($this->_productsNumber > 0){
+                $sliderProducts = $this->getSliderProducts($type);
+                if(count($sliderProducts)>0){
+                    $collection['products'] = $sliderProducts;
+                }
+            }
         }
 
         return $collection;
@@ -414,7 +466,21 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
      */
     public function getProductsCount()
     {
-        return self::PRODUCTS_COUNT;
-    }
+        $items = self::MAX_PRODUCTS_COUNT;
 
+        /**
+        * Total number of products in slider must be equal with getProductsNumber
+        * If not configured in slider settings then default MAX_PRODUCTS_COUNT is used
+        * Additional featured products plus base slider type products equals total slider products
+        */
+        if(!$this->_productsNumber){
+            if($this->_slider->getProductsNumber() > 0 && $this->_slider->getProductsNumber() <= self::MAX_PRODUCTS_COUNT ){
+                $items = $this->_slider->getProductsNumber();
+            }
+        } else {
+            $items = $this->_productsNumber;
+        }
+
+        return $items;
+    }
 }

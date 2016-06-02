@@ -22,8 +22,12 @@ class UpgradeSchema implements UpgradeSchemaInterface
     {
         $setup->startSetup();
 
-        if(version_compare($context->getVersion(), '1.1.1', '<=')){
+        if(version_compare($context->getVersion(), '1.1.2', '<')){
             $this->addDisplayPrice($setup);
+        }
+
+        if(version_compare($context->getVersion(), '1.1.3', '<')){
+            $this->addProductsNumber($setup);
         }
 
         $setup->endSetup();
@@ -73,6 +77,18 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 'comment' => 'Display add to compare'
             ]);
 
+    }
+
+    private function addProductsNumber(SchemaSetupInterface $setup)
+    {
+        $setup->getConnection()->addColumn(
+            $setup->getTable(self::TABLE_NAME),
+            'products_number',
+            [
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                'unsigned' => true,
+                'comment' => 'Number of products in slider'
+            ]);
     }
 
 }
