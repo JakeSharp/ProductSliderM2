@@ -61,5 +61,6 @@ pass: <strong>demo123</strong>
 
 <h2>Step 3</h2>
 - Login to Magento admin and enable extension at the JakeSharp => Settings => General => Enable
+
 <h2>Step 4 </h2>
 - That's it, you're done.
