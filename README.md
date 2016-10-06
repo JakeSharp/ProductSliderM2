@@ -34,15 +34,15 @@ pass: <strong>demo123</strong>
 
 # Installation:
 <h2>Step 1</h2>
-- <strong>using Composer</strong>: in magento root installation folder run into the command line:<br/>
+- <strong>using Composer</strong>: in magento root installation folder run this using the command line:<br/>
   - <strong>composer require jakesharp/module-productslider</strong>
  
-- <strong>or uploading files</strong>: 
-	- download core ZIP file from <a href="https://github.com/JakeSharp/CoreM2/archive/master.zip">here</a> 
+- <strong>or uploading files directly:</strong> 
+	- download the core ZIP file from <a href="https://github.com/JakeSharp/CoreM2/archive/master.zip">here</a> 
 	- extract files
 	- create directory in the <strong>app/code/JakeSharp/Core</strong>
 	- upload extracted files there
-	- download module ZIP file from <a href="https://github.com/JakeSharp/ProductsliderM2/archive/master.zip">here</a> 
+	- download the module ZIP file from <a href="https://github.com/JakeSharp/ProductsliderM2/archive/master.zip">here</a> 
 	- extract files
 	- create directory in the <strong>app/code/JakeSharp/Productslider</strong>
 	- upload extracted files there
@@ -54,10 +54,12 @@ pass: <strong>demo123</strong>
 	- clone module with: <strong>git clone https://github.com/JakeSharp/ProductSliderM2.git .</strong>
 
 <h2>Step 2</h2>
-- In magento root directory run following comands into the command line:
+- In magento root directory run the following comands using the command line:
 	- bin/magento module:enable JakeSharp_Core
 	- bin/magento module:enable JakeSharp_Productslider
   	- bin/magento setup:upgrade
 
 <h2>Step 3</h2>
 - Login to Magento admin and enable extension at the JakeSharp => Settings => General => Enable
+<h2>Step 4 </h2>
+- That's it, you're done.
