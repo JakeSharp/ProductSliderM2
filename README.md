@@ -1,3 +1,9 @@
+# UPDATE 🎉
+
+"Jake Sharp" is now Trive. Read all about it <a href="https://medium.com/@jakesharpco/change-the-name-its-no-big-deal-f158cc6e464a#.n9m1ylr7j">here</a>.
+
+- - - - - - - - - - - - 
+
 # ProductSliderM2
 A FREE Magento 2 module to create and manage product sliders.
 
