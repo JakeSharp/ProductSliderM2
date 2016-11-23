@@ -1,3 +1,8 @@
+# IMPORTANT
+This module is not maintained anymore. </br>
+Please check new module with new features like **color swatches** and **ajax cart** <a href="https://github.com/trive-digital/Revo-ProductSliderM2">here</a>.
+</br></br>
+
 # UPDATE 🎉
 
 "Jake Sharp" is now Trive. Read all about it <a href="https://medium.com/@jakesharpco/change-the-name-its-no-big-deal-f158cc6e464a#.n9m1ylr7j">here</a>.
