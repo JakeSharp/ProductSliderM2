@@ -167,10 +167,6 @@ class Items extends \Magento\Catalog\Block\Product\AbstractProduct
 
         $this->_productsNumber = $this->getProductsCount() - $collection->count();
 
-        \Magento\Framework\App\ObjectManager::getInstance()
-             ->get('Psr\Log\LoggerInterface')
-             ->debug("this->_productsNumber = ".$this->_productsNumber);
-
         return $collection;
     }
 
