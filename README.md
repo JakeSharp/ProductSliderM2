@@ -1,7 +1,7 @@
 # IMPORTANT
-This module is not maintained anymore. </br>
-Please check new module with new features like **color swatches** and **ajax cart** <a href="https://github.com/trive-digital/Revo-ProductSliderM2">here</a>.
-</br></br>
+Please check our new extension with new features like **color swatches** and **ajax cart** over at this repo: <a href="https://github.com/trive-digital/Revo-ProductSliderM2">REVO Product Slider for Magento 2</a>.
+
+This module is **not maintained** anymore.
 
 # UPDATE 🎉
 
